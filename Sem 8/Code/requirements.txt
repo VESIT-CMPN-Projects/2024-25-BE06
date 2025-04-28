@@ -1,0 +1,13 @@
+Flask
+pandas
+pinecone-client
+google-generativeai
+langchain
+langchain-google-genai
+langchain-pinecone
+langgraph
+markdown
+PyPDF2
+sumy
+fpdf
+python-dotenv

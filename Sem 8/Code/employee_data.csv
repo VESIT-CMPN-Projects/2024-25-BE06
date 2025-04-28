@@ -1,0 +1,26 @@
+employee_id,name,position,organizational_unit,ranks,hire_date,regularization_date,vacation_leave,sick_leave,basic_pay_in_php,employment_status,supervisor,password,email
+1005674,Joseph Peña,Accounts Recievable Supervisor,Finance Department,Supervisor,2/16/2013,7/16/2013,30,15,20000,Permanent,Richard Santos,Bg7u,joseph.pena@company.com
+1005675,Mark Delos Santos,HR Assistant,HR Department,Rank and File,1/1/2023,,20,2,15000,Probation,Jinky Francisco,Tp8,mark.delos.santos@company.com
+1005676,Alexander Verdad,Account Recievable Assistant,Finance Department,Rank and File,11/1/2017,5/1/2018,45,8,15000,Permanent,Joseph Santos,Qz5Yn7Lc,alexander.verdad@company.com
+1005677,Jinky Francisco,hr,hr,Supervisor,10/15/2021,4/15/2022,16,4,15000,Permanent,,Xr9Qv6Wp,vedangrathipbc@gmail.com
+1005678,Richard Santos,Accounts Recievable Head,Finance Department,Manager,3/16/2016,9/16/2016,50,11,30000,Permanent,,Kf3Jo8Nm,vedangrathipbc@gmail.com
+1005679,Nancy Odom,Wellsite geologist,HR Department,Rank and File,08/11/2024,09/26/2012,16,13,25000,Permanent,Richard Santos,dW^6IBhb,nancy.odom@company.com
+1005680,Angela Ward,Biomedical engineer,Marketing Department,Manager,02/04/2011,05/07/2013,22,7,20000,Permanent,Mark Delos Santos,Y$74Hnar,angela.ward@company.com
+1005681,Mark Morgan,Financial planner,IT Department,Manager,02/10/2012,05/15/2013,40,2,15000,Permanent,Mark Delos Santos,)+4Z%aNb,mark.morgan@company.com
+1005682,Cristina King,Print production planner,Sales Department,Manager,11/05/2015,09/11/2023,44,15,25000,Permanent,Joseph Peña,$lY^04Jb,cristina.king@company.com
+1005683,Briana Miranda,Environmental education officer,IT Department,Rank and File,03/16/2019,,12,8,30000,Permanent,Jinky Francisco,D@5R)Dkl,briana.miranda@company.com
+1005684,Jimmy Lopez,Product/process development scientist,HR Department,Rank and File,03/16/2018,06/10/2022,21,3,30000,Probation,Jinky Francisco,#7sFFKgl,jimmy.lopez@company.com
+1005685,Dustin Lamb,Primary school teacher,Sales Department,Rank and File,04/21/2023,02/08/2016,24,2,25000,Probation,Jinky Francisco,@trr7BYj,dustin.lamb@company.com
+1005686,William Gould,Learning mentor,HR Department,Manager,05/09/2011,,26,3,25000,Probation,Mark Delos Santos,w$4%A&z0,william.gould@company.com
+1005687,Anthony Kline DDS,Travel agency manager,HR Department,Manager,02/26/2015,10/16/2021,41,5,15000,Permanent,Joseph Peña,Y!T@6Rk!,anthony.dds@company.com
+1005688,Jessica Cochran,"Development worker, community",Marketing Department,Manager,03/03/2012,,23,2,15000,Probation,Richard Santos,r@9HtCm6,jessica.cochran@company.com
+1005689,Danielle Miller,Industrial/product designer,Sales Department,Manager,01/21/2012,11/28/2015,40,5,15000,Probation,,U$+!71Ny,danielle.miller@company.com
+1005690,Tammy Phillips,"Nurse, children's",HR Department,Supervisor,03/26/2023,02/18/2022,45,10,20000,Permanent,,&Y5VOZjk,tammy.phillips@company.com
+1005691,Rhonda Myers,Forensic psychologist,IT Department,Supervisor,02/02/2011,04/17/2022,33,6,25000,Probation,Joseph Peña,E#8vIFjm,rhonda.myers@company.com
+1005692,Chad Wright,"Engineer, drilling",Marketing Department,Manager,04/15/2022,08/30/2022,13,9,30000,Permanent,Jinky Francisco,zhT!5jKf,chad.wright@company.com
+1005693,Jennifer White,Surgeon,Finance Department,Manager,03/31/2023,03/02/2016,20,2,25000,Permanent,Mark Delos Santos,!95PTHJk,jennifer.white@company.com
+1005694,Courtney Mack,Printmaker,Finance Department,Manager,05/13/2011,,14,15,15000,Permanent,Joseph Peña,^C5_vYLp,courtney.mack@company.com
+1005695,Jeffrey Hale V,"Designer, interior/spatial",Marketing Department,Rank and File,01/27/2019,03/30/2021,49,14,20000,Permanent,,*!27h^Et,jeffrey.v@company.com
+1005696,Lisa Griffith,Plant breeder/geneticist,IT Department,Rank and File,11/01/2016,10/16/2017,32,5,30000,Probation,Alexander Verdad,OS+8Obv&,lisa.griffith@company.com
+1005697,Joseph Thompson,Medical technical officer,Marketing Department,Manager,09/01/2020,02/08/2021,39,9,15000,Permanent,Joseph Peña,v^w_7Eua,joseph.thompson@company.com
+1005698,Kimberly Cooke,Arts administrator,HR Department,Manager,07/07/2020,05/11/2019,48,14,20000,Probation,Mark Delos Santos,$238GvK),kimberly.cooke@company.com

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Guide</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #d0cecd; /* Typical WhatsApp background color */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #333;
+    }
+    .chat-container {
+      width: 100vh;
+      height: 100vh;
+      background-color: #FFFFFF;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    /* Header Bar */
+    .chat-header {
+      background-color: #228bee;
+      color: #FFFFFF;
+      padding: 16px;
+      text-align: left;
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .chat-header i {
+      font-size: 20px;
+    }
+    /* Chat Box */
+    .chat-box {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      background-color: #ECE5DD;
+      display: flex;
+      flex-direction: column;
+    }
+    .message {
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin: 6px 0;
+      max-width: 70%;
+      word-wrap: break-word;
+      font-size: 14px;
+      line-height: 1.4;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    /* User messages (right, green bubble) */
+    .user-message {
+      background-color: #98fff0;
+      align-self: flex-end;
+      border-bottom-right-radius: 0;
+    }
+    /* Bot messages (left, light bubble) */
+    .bot-message {
+      background-color: #E8F5E9;
+      align-self: flex-start;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 6px 0;
+      max-width: 60%;
+      word-wrap: break-word;
+      font-size: 14px;
+      line-height: 1.4;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .bot-message ul {
+      list-style-position: inside; 
+      padding-left: 1.2em;
+    }
+    /* Typing Indicator */
+    .typing-indicator {
+      display: none;
+      font-size: 14px;
+      color: gray;
+      padding: 5px;
+      text-align: center;
+    }
+    /* Input Section */
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      background-color: #F0F0F0;
+      align-items: center;
+      gap: 10px;
+    }
+    .chat-input input[type="text"] {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 20px;
+      outline: none;
+      background-color: #FFFFFF;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+    }
+    .chat-input button {
+      background-color: #075E54;
+      color: #FFFFFF;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .chat-input button:hover {
+      background-color: #0b6e62;
+    }
+    /* PDF Upload Button Styling */
+    #upload-pdf-btn {
+      background-color: #D32F2F;
+    }
+    #upload-pdf-btn:hover {
+      background-color: #B71C1C;
+    }
+    /* Hide default file input */
+    #pdf-input {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-header">
+    <i class="fas fa-user-tie"></i>
+    <span>Smart Guide</span>
+  </div>
+  <div class="chat-box" id="chat-box"></div>
+  <div class="typing-indicator" id="typing-indicator">Bot is typing...</div>
+  <div class="chat-input">
+    <input type="text" id="user-input" placeholder="Type a message..." />
+    <!-- Button to trigger PDF file upload -->
+    <button id="upload-pdf-btn" title="Upload PDF to Summarize" onclick="document.getElementById('pdf-input').click();">
+      <i class="fas fa-file-pdf"></i>
+    </button>
+    <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+    <!-- Hidden file input for PDF upload -->
+    <input type="file" id="pdf-input" accept="application/pdf" onchange="uploadPDF()" />
+  </div>
+</div>
+
+<script>
+  function sendMessage() {
+    const userMessage = document.getElementById("user-input").value;
+    if (userMessage.trim() === "") return;
+
+    const chatBox = document.getElementById("chat-box");
+    const typingIndicator = document.getElementById("typing-indicator");
+
+    // Display user message
+    const userMsgDiv = document.createElement("div");
+    userMsgDiv.className = "message user-message";
+    userMsgDiv.textContent = userMessage;
+    chatBox.appendChild(userMsgDiv);
+    document.getElementById("user-input").value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    // Show typing indicator
+    typingIndicator.style.display = "block";
+
+    // Send message to backend chat endpoint
+    fetch("/chat", {
+      method: "POST",
+      body: JSON.stringify({ message: userMessage }),
+      headers: { "Content-Type": "application/json" }
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Hide typing indicator
+      typingIndicator.style.display = "none";
+      // Display bot response
+      const botMsgDiv = document.createElement("div");
+      botMsgDiv.className = "message bot-message";
+      botMsgDiv.innerHTML = data.response;
+      chatBox.appendChild(botMsgDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    })
+    .catch(error => {
+      typingIndicator.style.display = "none";
+      console.error("Error:", error);
+    });
+  }
+
+  function uploadPDF() {
+    const pdfInput = document.getElementById("pdf-input");
+    const file = pdfInput.files[0];
+    if (!file) return;
+
+    const chatBox = document.getElementById("chat-box");
+    const typingIndicator = document.getElementById("typing-indicator");
+
+    // Display message in chat that PDF is being summarized
+    const userMsgDiv = document.createElement("div");
+    userMsgDiv.className = "message user-message";
+    userMsgDiv.textContent = "Uploading PDF for summarization...";
+    chatBox.appendChild(userMsgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    const formData = new FormData();
+    formData.append("pdf_file", file);
+
+    // Show typing indicator
+    typingIndicator.style.display = "block";
+
+    fetch("/summarize_pdf", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      typingIndicator.style.display = "none";
+      const botMsgDiv = document.createElement("div");
+      botMsgDiv.className = "message bot-message";
+      if(data.summary){
+        botMsgDiv.innerHTML = `<b>PDF Summary:</b><br>${data.summary}`;
+      } else if(data.error){
+        botMsgDiv.textContent = `Error: ${data.error}`;
+      }
+      chatBox.appendChild(botMsgDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      // Clear file input
+      pdfInput.value = "";
+    })
+    .catch(error => {
+      typingIndicator.style.display = "none";
+      console.error("Error:", error);
+    });
+  }
+
+  // Send message on Enter key
+  document.getElementById("user-input").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  });
+</script>
+
+</body>
+</html>
